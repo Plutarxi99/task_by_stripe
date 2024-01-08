@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # установленные пакеты
     'rest_framework',
+    'drf_yasg',
     # созданные приложения
     'users',
     'payment',
