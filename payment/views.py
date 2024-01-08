@@ -6,5 +6,8 @@ from payment.serializers import OrderSessionSerializer
 
 
 class OrderRetrieveAPIView(RetrieveAPIView):
+    """
+    Получение ссылки на покупку выбранных продуктов
+    """
     queryset = Order.objects.all()
     serializer_class = OrderSessionSerializer
