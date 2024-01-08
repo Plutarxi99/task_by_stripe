@@ -9,16 +9,25 @@ from product.models import Item
 
 
 class ItemSessionIdRetrieveAPIView(RetrieveAPIView):
+    """
+    Получение id session продукта указанного при вызове
+    """
     queryset = Item.objects.all()
     serializer_class = ItemSessionSerializer
 
 
 class ItemBuyUrlDetailView(RetrieveAPIView):
+    """
+    Получение ссылки на продукт с кнопкой покупки
+    """
     queryset = Item.objects.all()
     serializer_class = ItemUrlSerializer
 
 
 class ItemBuyDetailView(DetailView):
+    """
+    Для передачи stripe ключа в HTML страницу
+    """
     model = Item
 
     def get_context_data(self, **kwargs):
