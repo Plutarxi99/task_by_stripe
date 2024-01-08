@@ -5,12 +5,15 @@ charset-normalizer==3.3.2
 decorator==5.1.1
 Django==5.0
 djangorestframework==3.14.0
+drf-yasg==1.21.7
 exceptiongroup==1.2.0
 executing==2.0.1
 idna==3.6
+inflection==0.5.1
 ipython==8.19.0
 jedi==0.19.1
 matplotlib-inline==0.1.6
+packaging==23.2
 parso==0.8.3
 pexpect==4.9.0
 prompt-toolkit==3.0.43
@@ -20,6 +23,7 @@ pure-eval==0.2.2
 Pygments==2.17.2
 python-dotenv==1.0.0
 pytz==2023.3.post1
+PyYAML==6.0.1
 requests==2.31.0
 six==1.16.0
 sqlparse==0.4.4
@@ -27,5 +31,6 @@ stack-data==0.6.3
 stripe==7.10.0
 traitlets==5.14.0
 typing_extensions==4.9.0
+uritemplate==4.1.1
 urllib3==2.1.0
 wcwidth==0.2.12
