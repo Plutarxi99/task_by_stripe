@@ -20,9 +20,8 @@ services:
     build: .
     tty: true
     command: sh -c 'python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000'
-#    command: python3 manage.py runserver 0.0.0.0:8001
     ports:
-      - '8002:8000'
+      - '8000:8000'
     volumes:
       - .:/code
     depends_on:
