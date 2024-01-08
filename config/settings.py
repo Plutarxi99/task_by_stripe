@@ -16,6 +16,7 @@ from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+ENV_TYPE = os.getenv('ENV_TYPE')
 
 load_dotenv(BASE_DIR / '.env')
 # Quick-start development settings - unsuitable for production
@@ -26,9 +27,12 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
-
+if ENV_TYPE == 'local':
+    ALLOWED_HOSTS = []
+elif ENV_TYPE == 'server':
+    ALLOWED_HOSTS = [os.getenv('HOST_IP')]
+else:
+    ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -39,10 +43,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # install package
+    # установленные пакеты
     'rest_framework',
-    # create app
+    # созданные приложения
     'users',
+    'payment',
+    'product',
 ]
 
 MIDDLEWARE = [
@@ -75,20 +81,35 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        "ENGINE": os.getenv("ENGINE_DB"),
-        "NAME": os.getenv("NAME_BD"),
-        "USER": os.getenv("USER_BD"),
-        'PASSWORD': os.getenv("PASSWORD_BD"),
-        'HOST': os.getenv("HOST_BD")
+if ENV_TYPE == 'local':
+    DATABASES = {
+        'default': {
+            "ENGINE": os.getenv("ENGINE_DB"),
+            "NAME": os.getenv("NAME_BD"),
+            "USER": os.getenv("USER_BD"),
+        }
     }
-}
-
+elif ENV_TYPE == 'server':
+    DATABASES = {
+        'default': {
+            "ENGINE": os.getenv("ENGINE_DB"),
+            "NAME": os.getenv("NAME_BD_DOCKER"),
+            "USER": os.getenv("USER_BD"),
+            'PASSWORD': os.getenv("PASSWORD_BD"),
+            'HOST': os.getenv("HOST_BD")
+        }
+    }
+else:
+    DATABASES = {
+        'default': {
+            "ENGINE": os.getenv("ENGINE_DB"),
+            "NAME": os.getenv("NAME_BD"),
+            "USER": os.getenv("USER_BD"),
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -108,7 +129,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -120,11 +140,13 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = (
+    BASE_DIR / 'static',
+)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -138,3 +160,11 @@ REST_FRAMEWORK = {
 }
 
 NULLABLE = {'blank': True, 'null': True}
+
+STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
+
+AUTH_USER_MODEL = 'users.User'
+
+SUPERUSER_EMAIL = os.getenv('SUPERUSER_EMAIL')
+SUPERUSER_PASSWORD = os.getenv('SUPERUSER_PASSWORD')
