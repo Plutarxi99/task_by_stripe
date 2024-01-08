@@ -1,0 +1,112 @@
+[
+  {
+    "model": "product.item",
+    "pk": 1,
+    "fields": {
+      "name": "ручка",
+      "description": "шариковая",
+      "price": 10000,
+      "currency": "rub"
+    }
+  },
+  {
+    "model": "product.item",
+    "pk": 2,
+    "fields": {
+      "name": "карандаш",
+      "description": "деревянная",
+      "price": 800,
+      "currency": "rub"
+    }
+  },
+  {
+    "model": "product.item",
+    "pk": 3,
+    "fields": {
+      "name": "резинка",
+      "description": "красная",
+      "price": 1500,
+      "currency": "rub"
+    }
+  },
+  {
+    "model": "product.item",
+    "pk": 4,
+    "fields": {
+      "name": "стол",
+      "description": "плоский",
+      "price": 8500,
+      "currency": "rub"
+    }
+  },
+  {
+    "model": "product.item",
+    "pk": 5,
+    "fields": {
+      "name": "компьютер",
+      "description": "мощный",
+      "price": 75000,
+      "currency": "rub"
+    }
+  },
+  {
+    "model": "product.item",
+    "pk": 6,
+    "fields": {
+      "name": "тетрадь",
+      "description": "в клаточку",
+      "price": 1200,
+      "currency": "rub"
+    }
+  },
+  {
+    "model": "product.item",
+    "pk": 7,
+    "fields": {
+      "name": "книжка",
+      "description": "умная",
+      "price": 6500,
+      "currency": "rub"
+    }
+  },
+  {
+    "model": "product.item",
+    "pk": 8,
+    "fields": {
+      "name": "мышка",
+      "description": "компьютерная",
+      "price": 1800,
+      "currency": "rub"
+    }
+  },
+  {
+    "model": "product.item",
+    "pk": 9,
+    "fields": {
+      "name": "монитор",
+      "description": "плоский",
+      "price": 14500,
+      "currency": "rub"
+    }
+  },
+  {
+    "model": "product.item",
+    "pk": 10,
+    "fields": {
+      "name": "клавиатура",
+      "description": "механическая",
+      "price": 3000,
+      "currency": "rub"
+    }
+  },
+  {
+    "model": "product.item",
+    "pk": 11,
+    "fields": {
+      "name": "без описания",
+      "description": null,
+      "price": 150000,
+      "currency": "rub"
+    }
+  }
+]

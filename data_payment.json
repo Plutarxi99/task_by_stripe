@@ -1,0 +1,83 @@
+[
+  {
+    "model": "payment.discount",
+    "pk": 1,
+    "fields": {
+      "discount": 10
+    }
+  },
+  {
+    "model": "payment.discount",
+    "pk": 2,
+    "fields": {
+      "discount": 15
+    }
+  },
+  {
+    "model": "payment.tax",
+    "pk": 1,
+    "fields": {
+      "tax": "txcd_20030000"
+    }
+  },
+  {
+    "model": "payment.tax",
+    "pk": 2,
+    "fields": {
+      "tax": "txcd_30071000"
+    }
+  },
+  {
+    "model": "payment.order",
+    "pk": 1,
+    "fields": {
+      "discount": 1,
+      "tax": 1,
+      "item": [
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "model": "payment.order",
+    "pk": 2,
+    "fields": {
+      "discount": 2,
+      "tax": 2,
+      "item": [
+        4,
+        5,
+        6
+      ]
+    }
+  },
+  {
+    "model": "payment.order",
+    "pk": 3,
+    "fields": {
+      "discount": null,
+      "tax": null,
+      "item": [
+        8,
+        9,
+        10,
+        7
+      ]
+    }
+  },
+  {
+    "model": "payment.order",
+    "pk": 4,
+    "fields": {
+      "discount": 1,
+      "tax": 1,
+      "item": [
+        9,
+        10,
+        11
+      ]
+    }
+  }
+]

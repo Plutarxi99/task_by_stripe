@@ -1,0 +1,158 @@
+{#<script src="https://js.stripe.com/v3/"></script>#}
+{#<script>#}
+{#    const stripe = Stripe('{{ stripe_publishable_key }}');#}
+{#    const checkoutButton = document.getElementById('checkout-button');#}
+{##}
+{#    checkoutButton.addEventListener('click', () => {#}
+{##}
+{#        stripe.redirectToCheckout({#}
+{#            // Make the id field from the Checkout Session creation API response#}
+{#            // available to this file, so you can provide it as argument here#}
+{#            // instead of the laceholder.#}
+{#            sessionId: 'cs_test_a129hvsQPRhoQauj94HKcpmtiaWMgbAMGji6aVa5bbFdpXoRHPU7ZHIXAP'#}
+{#        })#}
+{#        // If `redirectToCheckout` fails due to a browser or network#}
+{#        // error, display the localized error message to your customer#}
+{#        // using `error.message`.#}
+{#    });#}
+{#</script>#}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Описание</th>
+            <th scope="col">Цена</th>
+            <th scope="col">Валюта</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">{{ object.pk }}</th>
+            <td>{{ object.name }}</td>
+            <td>{{ object.description }}</td>
+            <td>{{ object.price }}</td>
+            <td>{{ object.currency }}</td>
+        </tr>
+        </tbody>
+    </table>
+</head>
+{#<a class="btn btn-lg btn-primary" href="{% url 'product:get_session_id' object.pk %}">Buy</a>#}
+<div class="card-footer d-flex">
+    <button class="btn btn-success ml-auto" id="checkout-button">Checkout</button>
+</div>
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    const stripe = Stripe('{{ stripe_publishable_key }}');
+    const checkoutButton = document.getElementById('checkout-button');
+
+    checkoutButton.addEventListener('click', () => {
+        fetch('{% url 'product:get_session_id' object.pk %}')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (session) {
+                return stripe.redirectToCheckout({
+                    sessionId: session.stripe_session_id
+                });
+            })
+            .then(function (result) {
+                // If `redirectToCheckout` fails due to a browser or network
+                // error, you should display the localized error message to your
+                // customer using `error.message`.
+                if (result.error) {
+                    alert(result.error.message);
+                }
+            })
+            .catch(function (error) {
+                console.error('Error:', error);
+            });
+    });
+</script>
+</html>
+
+{#<h1 class="text-center">Product Detail</h1>#}
+{#<div class="container">#}
+{##}
+{#    <div class="card">#}
+{#        <div class="card-header">#}
+{#            <h2>Product Detail</h2>#}
+{#        </div>#}
+{#        <div class="card-body">#}
+{#            <div class="container row">#}
+{#                <div class="col-md-10">#}
+{#                    <h1>Name: {{ object.name }}</h1>#}
+{#                    <p>Description: {{ object.description }}</p>#}
+{#                    <p>Price: {{ object.price }}</p>#}
+{#                    <p>Currency: {{ object.currency }}</p>#}
+{##}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="card-footer d-flex">#}
+{#            <button class="btn btn-success ml-auto" id="checkout-button">Checkout</button>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+{#<script src="https://js.stripe.com/v3/"></script>#}
+{#<script type="text/javascript">#}
+{#    // Create an instance of the Stripe object with your publishable API key#}
+{#    var stripe = Stripe('{{ stripe_publishable_key }}');#}
+{#    var checkoutButton = document.getElementById('checkout-button');#}
+{##}
+{#checkoutButton.addEventListener('click', function () {#}
+{##}
+{##}
+{#// Create a new Checkout Session using the server-side endpoint you#}
+{#// created in step 3.#}
+{#fetch("{% url 'product:get_session_id' pk=object.id %}", {#}
+{#method: 'GET',#}
+
+{#.then(function (response) {#}
+{#return response.json();#}
+
+{#.then(function (session) {#}
+{#return stripe.redirectToCheckout({ sessionId: session.sessionId });#}
+
+{#                .then(function (result) {#}
+{#                    // If `redirectToCheckout` fails due to a browser or network#}
+{#                    // error, you should display the localized error message to your#}
+{#                    // customer using `error.message`.#}
+{#                if (result.error) {#}
+{#                    alert(result.error.message);#}
+{#                }#}
+{#            })#}
+{#            .catch(function (error) {#}
+{#                console.error('Error:', error);#}
+{#            });#}
+{#    });#}
+{#</script>#}
+
+{#<html>#}
+{#  <head>#}
+{#    <title>Buy cool new product</title>#}
+{#  </head>#}
+{#  <body>#}
+{#    <!-- Use action="/create-checkout-session.php" if your server is PHP based. -->#}
+{#    <form action="/create-checkout-session" method="POST">#}
+{#      <button type="submit">Checkout</button>#}
+{#    </form>#}
+{#  </body>#}
+{#</html>#}
+
+
+{#<html>#}
+{#  <head>#}
+{#    <title>Buy cool new product</title>#}
+{#  </head>#}
+{#  <body>#}
+{#    <!-- Use action="/create-checkout-session.php" if your server is PHP based. -->#}
+{#    <form action="/create-checkout-session" method="POST">#}
+{#      <button type="submit">Checkout</button>#}
+{#    </form>#}
+{#  </body>#}
+{#</html>#}
