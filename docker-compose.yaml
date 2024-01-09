@@ -15,6 +15,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    restart: always
 
   app:
     build: .
@@ -31,6 +32,7 @@ services:
       - ENV_TYPE=server
     env_file:
       - .env
+    restart: always
 
 volumes:
   pg_data:
